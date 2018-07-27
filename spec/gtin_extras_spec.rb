@@ -1,0 +1,119 @@
+require 'spec_helper'
+
+describe GTINExtras do
+  it 'has a version number' do
+    expect(GTINExtras::VERSION).not_to be nil
+  end
+end
+
+describe GTIN do
+  describe '#upc?' do
+    it 'rejects words' do
+      expect('foobar'.upc?).to be false
+    end
+    it 'rejects words and numbers' do
+      expect('123foobar'.upc?).to be false
+    end
+    it 'rejects bad numbers' do
+      expect('123'.upc?).to be false
+      expect('12345678901'.upc?).to be false
+    end
+    it 'rejects bad UPC' do
+      expect('076378722791'.upc?).to be false
+    end
+    it 'validates UPC' do
+      expect('076308722791'.upc?).to be true
+    end
+  end
+  describe '#ean?' do
+    it 'rejects words' do
+      expect('foobar'.ean?).to be false
+    end
+    it 'rejects words and numbers' do
+      expect('123foobar'.ean?).to be false
+    end
+    it 'rejects bad numbers' do
+      expect('123'.ean?).to be false
+      expect('12345678901'.ean?).to be false
+    end
+    it 'rejects bad EAN' do
+      expect('5010924527481'.ean?).to be false
+    end
+    it 'validates EAN' do
+      expect('5010724527481'.ean?).to be true
+    end
+  end
+  describe '#gs1?' do
+    it 'rejects words' do
+      expect('foobar'.gs1?).to be false
+    end
+    it 'rejects words and numbers' do
+      expect('123foobar'.gs1?).to be false
+    end
+    it 'rejects bad numbers' do
+      expect('123'.gs1?).to be false
+      expect('12345678901'.gs1?).to be false
+    end
+    it 'rejects bad GS1' do
+      expect('10046001693866'.gs1?).to be false
+    end
+    it 'validates GS1' do
+      expect('10048001693866'.gs1?).to be true
+    end
+  end
+  describe '#gtin_structure' do
+    it 'rejects words' do
+      expect('foobar'.gtin_structure).to be nil
+    end
+    it 'rejects words and numbers' do
+      expect('123foobar'.gtin_structure).to be nil
+    end
+    it 'returns correct structure' do
+      expect('076308722791'.gtin_structure).to be :upc
+      expect('5010724527481'.gtin_structure).to be :ean
+      expect('10048001693866'.gtin_structure).to be :gs1
+    end
+  end
+end
+
+describe ASIN do
+  describe '#asin?' do
+    it 'rejects words' do
+      expect('foobar'.asin?).to be false
+    end
+    it 'rejects words and numbers' do
+      expect('123foobar'.asin?).to be false
+    end
+    it 'rejects bad numbers' do
+      expect('123'.asin?).to be false
+      expect('12345678901'.asin?).to be false
+    end
+    it 'validates ASIN' do
+      expect('B00HG34JU9'.asin?).to be true
+    end
+  end
+end
+
+describe PLU do
+  describe '#plu?' do
+    it 'rejects words' do
+      expect('foobar'.plu?).to be false
+    end
+    it 'rejects words and numbers' do
+      expect('123foobar'.plu?).to be false
+    end
+    it 'rejects bad numbers' do
+      expect('123'.plu?).to be false
+      expect('12345678901'.plu?).to be false
+    end
+    it 'rejects bad PLU' do
+      expect('2399'.plu?).to be false
+    end
+    it 'validates PLU' do
+      expect('3499'.plu?).to be true
+    end
+    it 'validates organic PLU' do
+      expect('83499'.plu?).to be true
+    end
+  end
+end
