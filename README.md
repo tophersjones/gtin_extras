@@ -1,5 +1,5 @@
 # gtin_extras
-Ruby String extensions for validating GTIN/UPC/EAN/ASIN/GS1 numbers and formatting.
+Ruby String extensions for validating and formatting GTIN/UPC/EAN/GS1 _and_ PLU _and_ ASIN numbers. Use these to clean up and validate your ecommerce data!
 
 ## Usage
 
