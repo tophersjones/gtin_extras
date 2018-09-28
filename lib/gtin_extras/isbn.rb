@@ -1,14 +1,14 @@
 # String validation for ISBN codes
 # Ref: https://www.instructables.com/id/How-to-verify-a-ISBN/
-# (multiple refs): https://en.wikipedia.org/wiki/International_Standard_Book_Number
+# some more refs @: https://en.wikipedia.org/wiki/International_Standard_Book_Number
 module ISBN
   def isbn?
+    #removes any dashes or spaces
     self.replace(self.tr('- ', ''))
     return false unless [10, 13].include?(length)
     return false unless to_s.scan(/\D/).empty?
     case length
       when 10
-        puts calculate_10_dig
         return false unless (calculate_10_dig % 11 == 0)
       when 13
         return false unless (calculate_13_dig % 10 == 0)
