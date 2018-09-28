@@ -130,25 +130,21 @@ describe ISBN do
       expect('123'.isbn?).to be false
       expect('12345678901'.isbn?).to be false
     end
-    it 'rejects bad 10 digit ISPN' do
+    it 'rejects bad 10 digit ISBN' do
       expect('1298321987'.isbn?).to be false
     end
-    it 'rejects bad 13 digit ISPN' do
+    it 'rejects bad 13 digit ISBN' do
       expect('1298321934387'.isbn?).to be false
     end
-    it 'validates 10 digit ISPN' do
+    it 'validates 10 digit ISBN' do
       expect('9971502100'.isbn?).to be true
     end
-    it 'validates 10 digit ISPN with dashes and/or spaces' do
-      expect('960-425-059-0'.isbn?).to be true
-      expect('80 902734 1 6'.isbn?).to be true
-    end
-    it 'validates 13 digit ISPN' do
+    it 'validates 13 digit ISBN' do
       expect('9781234567897'.isbn?).to be true
     end
-    it 'validates 13 digit ISPN with dashes and/or spaces' do
-      expect('978-0-393-34340-3'.isbn?).to be true
-      expect('978 0 393 34340 3'.isbn?).to be true
+    it 'validates ISBN with hyphens, spaces, or other characters' do
+      expect('960-425-059-0'.isbn?).to be true
+      expect('ISBN 978 0 393 34340 3'.isbn?).to be true
     end
   end
 end

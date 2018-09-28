@@ -3,10 +3,10 @@
 # some more refs @: https://en.wikipedia.org/wiki/International_Standard_Book_Number
 module ISBN
   def isbn?
-    #removes any dashes or spaces
-    self.replace(self.tr('- ', ''))
+    #removes any non-digits
+    str = to_s.gsub(/[\D]+/, '')
+    self.replace(str)
     return false unless [10, 13].include?(length)
-    return false unless to_s.scan(/\D/).empty?
     case length
       when 10
         return false unless (calculate_10_dig % 11 == 0)
