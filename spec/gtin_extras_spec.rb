@@ -160,6 +160,9 @@ describe UNSPSC do
     it 'rejects bad UNSPSC' do
       expect('49240001'.unspsc?).to be false
     end
+    it 'only accepts 8 digit numbers' do
+      expect('4924'.unspsc?).to be false
+    end
     it 'does not validate 10 digit UNSPSC' do
       expect('4320150114'.unspsc?).to be false
     end
@@ -174,6 +177,7 @@ describe UNSPSC do
     end
     it 'Returns "No results found" for bad UNSPSC code' do
       expect('49240001'.unspsc_title?).to eq 'No results found'
+      expect('4924'.unspsc_title?).to eq 'No results found'
     end
   end
 end

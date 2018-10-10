@@ -17,13 +17,15 @@ module UNSPSC
     puts ('API call failed')
   end
 
-  # Parses html, gets text from last td element 
+  # Checks input length, parses html, gets text from last td element 
   def unspsc_title?
+    return 'No results found' unless to_str.length == 8
     unparsed_page = scrape_data()
     unparsed_page != nil ? (
       parsed_page = Nokogiri::HTML(unparsed_page)
       td_elements = parsed_page.css('td')
       title = td_elements.last.children.children.text 
+      # indicates empty td element
       return title unless title.include? "\r"
       return 'No results found'
     ) : (
