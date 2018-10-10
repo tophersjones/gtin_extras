@@ -1,5 +1,5 @@
 # gtin_extras
-Ruby String extensions for validating and formatting GTIN/UPC/EAN/GS1 _and_ PLU _and_ ASIN _and_ ISBN numbers. Use these to clean up and validate your ecommerce data!
+Ruby String extensions for validating and formatting GTIN/UPC/EAN/GS1 _and_ PLU _and_ ASIN _and_ ISBN _and_ UNSPSC numbers. Use these to clean up and validate your ecommerce data!
 
 ## Usage
 
@@ -19,6 +19,12 @@ require 'gtin_extras'
 '960-425-059-0'.isbn?           # true
 '960 425 059 0'.isbn?           # true
 '9781234567897'.isbn?           # true
+'43201501'.unspsc?              # true
+'4320150114'.unspsc?            # false
+'43201501'.unspsc_title?        #'Asynchronous transfer mode ATM telecommunications interface cards'
+'43201511'.unspsc_title?        # 'No results found'
+
+
 ```
 
 ## Installation
@@ -61,6 +67,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 - https://www.ifpsglobal.com/Identification/PLU-Codes
 - https://www.instructables.com/id/How-to-verify-a-ISBN/
 - https://en.wikipedia.org/wiki/International_Standard_Book_Number
+- 
+https://www.unspsc.org/search-code/, https://www.unspsc.org/faqs
+- 
 
 ## Contributing
 

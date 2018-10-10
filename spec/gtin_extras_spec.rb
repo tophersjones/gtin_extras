@@ -119,7 +119,7 @@ describe PLU do
 end
 
 describe ISBN do
-  describe '#isbn' do
+  describe '#isbn?' do
     it 'rejects words' do
       expect('foobar'.isbn?).to be false
     end
@@ -145,6 +145,35 @@ describe ISBN do
     it 'validates ISBN with hyphens, spaces, or other characters' do
       expect('960-425-059-0'.isbn?).to be true
       expect('ISBN 978 0 393 34340 3'.isbn?).to be true
+    end
+  end
+end
+
+describe UNSPSC do 
+  describe '#unspsc?' do 
+    it 'rejects words' do
+      expect('foobar'.unspsc?).to be false
+    end
+    it 'rejects words and numbers' do
+      expect('123foobar'.unspsc?).to be false
+    end
+    it 'rejects bad UNSPSC' do
+      expect('49240001'.unspsc?).to be false
+    end
+    it 'does not validate 10 digit UNSPSC' do
+      expect('4320150114'.unspsc?).to be false
+    end
+    it 'validates 8 digit UNSPSC' do
+      expect('43201501'.unspsc?).to be true
+    end
+  end
+  describe '#unspsc_title?' do
+    it 'Returns the title of a valid UNSPSC code' do
+      expect('49240000'.unspsc_title?).to eq 'Recreation and playground and swimming and spa equipment and supplies'
+      expect('43201501'.unspsc_title?).to eq 'Asynchronous transfer mode ATM telecommunications interface cards'
+    end
+    it 'Returns "No results found" for bad UNSPSC code' do
+      expect('49240001'.unspsc_title?).to eq 'No results found'
     end
   end
 end
