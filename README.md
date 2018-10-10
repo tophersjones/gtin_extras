@@ -21,7 +21,7 @@ require 'gtin_extras'
 '9781234567897'.isbn?           # true
 '43201501'.unspsc?              # true
 '4320150114'.unspsc?            # false
-'43201501'.unspsc_title?        #'Asynchronous transfer mode ATM telecommunications interface cards'
+'43201501'.unspsc_title?        # 'Asynchronous transfer mode ATM telecommunications interface cards'
 '43201511'.unspsc_title?        # 'No results found'
 
 
