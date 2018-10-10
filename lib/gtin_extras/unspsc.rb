@@ -33,7 +33,7 @@ module UNSPSC
       )
   end
 
-  # Using uspsc_title, determines if unspsc code is valid 
+  # Using unspsc_title, determines if unspsc code is valid 
   def unspsc?
     data = unspsc_title?()
     if (data == 'API call failed')
