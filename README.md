@@ -67,9 +67,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 - https://www.ifpsglobal.com/Identification/PLU-Codes
 - https://www.instructables.com/id/How-to-verify-a-ISBN/
 - https://en.wikipedia.org/wiki/International_Standard_Book_Number
-- 
-https://www.unspsc.org/search-code/, https://www.unspsc.org/faqs
-- 
+- https://www.unspsc.org/search-code/
+
+- https://www.unspsc.org/faqs
 
 ## Contributing
 
